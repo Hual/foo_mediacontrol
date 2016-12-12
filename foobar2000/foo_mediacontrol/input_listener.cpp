@@ -3,10 +3,28 @@
 #include "input_listener.h"
 
 void input_listener::on_button_pressed(Windows::Media::SystemMediaTransportControls^ sender, Windows::Media::SystemMediaTransportControlsButtonPressedEventArgs^ args) {
-	switch (args->Button)
-	{
-	case Windows::Media::SystemMediaTransportControlsButton::Play:
+	// create a notification object
+	service_ptr_t<media_notification_t> notification_ptr = new service_impl_t<media_notification_t>(args->Button);
+	// run the code on main thread as playback_control only works from the main thread
+	static_api_ptr_t<main_thread_callback_manager>()->add_callback(notification_ptr.get_ptr());
+}
 
+void input_listener::media_notification_t::callback_run() {
+	switch (m_button) {
+	case Windows::Media::SystemMediaTransportControlsButton::Play:
+		m_playback_control->play_or_unpause();
+		break;
+	case Windows::Media::SystemMediaTransportControlsButton::Pause:
+		m_playback_control->pause(true);
+		break;
+	case Windows::Media::SystemMediaTransportControlsButton::Stop:
+		m_playback_control->stop();
+		break;
+	case Windows::Media::SystemMediaTransportControlsButton::Next:
+		m_playback_control->next();
+		break;
+	case Windows::Media::SystemMediaTransportControlsButton::Previous:
+		m_playback_control->previous();
 		break;
 	}
 }
