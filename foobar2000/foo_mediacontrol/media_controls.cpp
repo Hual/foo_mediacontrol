@@ -24,7 +24,7 @@ media_controls::media_controls() {
 	m_controls->IsNextEnabled = true;
 	
 	m_event_id = (m_controls->ButtonPressed += ref new Windows::Foundation::TypedEventHandler<Windows::Media::SystemMediaTransportControls^, Windows::Media::SystemMediaTransportControlsButtonPressedEventArgs^>(m_input_listener, &input_listener::on_button_pressed));
-
+	
 	m_art_stream = nullptr;
 }
 
@@ -93,6 +93,23 @@ media_controls& media_controls::set_genres(genre_data_vector& genres) {
 	m_props->Genres->ReplaceAll(Platform::ArrayReference<Platform::String^>(genres.data(), genres.size()));
 
 	return *this;
+}
+
+void media_controls::play()
+{
+	m_controls->PlaybackStatus = Windows::Media::MediaPlaybackStatus::Playing;
+	m_controls->IsEnabled = true;
+}
+
+void media_controls::pause()
+{
+	m_controls->PlaybackStatus = Windows::Media::MediaPlaybackStatus::Paused;
+}
+
+void media_controls::stop()
+{
+	m_controls->PlaybackStatus = Windows::Media::MediaPlaybackStatus::Stopped;
+	m_controls->IsEnabled = false;
 }
 
 media_controls& media_controls::begin_update() {

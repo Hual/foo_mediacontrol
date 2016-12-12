@@ -12,7 +12,6 @@ void playback_listener::on_playback_new_track(metadb_handle_ptr p_track) {
 		// update the media controls
 		media_controls::get()
 			.begin_update()
-			.toggle(true)
 			.set_title(data.get_title())
 			.set_artist(data.get_artist())
 			.set_genres(data.get_genres())
@@ -24,5 +23,22 @@ void playback_listener::on_playback_new_track(metadb_handle_ptr p_track) {
 	}
 	catch (pfc::exception e) {
 		popup_message::g_show("Caught exception", "Error");
+	}
+}
+
+void playback_listener::on_playback_starting(play_control::t_track_command p_command, bool p_paused) {
+	media_controls::get().play();
+}
+
+void playback_listener::on_playback_stop(play_control::t_stop_reason p_reason) {
+	media_controls::get().stop();
+}
+
+void playback_listener::on_playback_pause(bool p_state) {
+	if (p_state) {
+		media_controls::get().pause();
+	}
+	else {
+		media_controls::get().play();
 	}
 }
