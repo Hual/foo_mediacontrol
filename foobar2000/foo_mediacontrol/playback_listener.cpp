@@ -31,7 +31,9 @@ void playback_listener::on_playback_starting(play_control::t_track_command p_com
 }
 
 void playback_listener::on_playback_stop(play_control::t_stop_reason p_reason) {
-	media_controls::get().stop();
+	if (p_reason != play_control::t_stop_reason::stop_reason_starting_another) {
+		media_controls::get().stop();
+	}
 }
 
 void playback_listener::on_playback_pause(bool p_state) {
