@@ -27,9 +27,11 @@ public:
 	media_controls& set_track_number(std::wstring number);
 	media_controls& set_track_number(const wchar_t* number);
 	media_controls& set_genres(genre_data_vector& genres);
+	media_controls& set_status(Windows::Media::MediaPlaybackStatus status);
 	void play();
 	void pause();
 	void stop();
+	inline bool get_enabled() { return m_controls->IsEnabled; }
 
 private:
 	Windows::Media::SystemMediaTransportControls^ m_controls;

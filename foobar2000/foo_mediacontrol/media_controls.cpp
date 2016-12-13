@@ -95,6 +95,10 @@ media_controls& media_controls::set_genres(genre_data_vector& genres) {
 	return *this;
 }
 
+media_controls& media_controls::set_status(Windows::Media::MediaPlaybackStatus status) {
+	m_controls->PlaybackStatus = status;
+}
+
 void media_controls::play()
 {
 	m_controls->PlaybackStatus = Windows::Media::MediaPlaybackStatus::Playing;
