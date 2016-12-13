@@ -23,6 +23,7 @@ public:
 private:
 	playback_listener* m_playback_listener;
 	message_listener* m_message_listener;
+
 };
 
 static initquit_factory_t<myinitquit> g_myinitquit_factory;

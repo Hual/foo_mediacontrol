@@ -120,8 +120,7 @@ media_controls& media_controls::begin_update() {
 	m_updater->ClearAll();
 	m_updater->Type = Windows::Media::MediaPlaybackType::Music;
 
-	if (m_art_stream)
-	{
+	if (m_art_stream) {
 		m_art_stream->Release();
 		m_art_stream = nullptr;
 	}

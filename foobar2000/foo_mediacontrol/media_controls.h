@@ -42,4 +42,5 @@ private:
 
 	Windows::Foundation::EventRegistrationToken m_event_id;
 	input_listener^ m_input_listener;
+
 };
