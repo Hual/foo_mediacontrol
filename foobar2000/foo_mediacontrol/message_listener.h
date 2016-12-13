@@ -5,10 +5,9 @@
 class message_listener : private message_filter_impl_base {
 public:
 	// doesn't actually register a message since foobar has already registered it; just receives the message's number
-	message_listener() : message_filter_impl_base() { WM_SHELLHOOKMESSAGE = RegisterWindowMessage(SHELLHOOK_NAME); }
+	message_listener(t_uint32 message = RegisterWindowMessage(SHELLHOOK_NAME)) : message_filter_impl_base(message, message) { }
 	bool pretranslate_message(MSG* p_msg);
 
-private:
-	UINT WM_SHELLHOOKMESSAGE;
-
 };
+
+#undef SHELLHOOK_NAME
