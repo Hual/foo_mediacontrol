@@ -2,6 +2,7 @@
 
 #include "playback_listener.h"
 #include "message_listener.h"
+#include "preferences.h"
 
 class myinitquit : public initquit {
 public:
@@ -26,4 +27,4 @@ private:
 
 };
 
-static initquit_factory_t<myinitquit> g_myinitquit_factory;
+static initquit_factory_t<myinitquit> g_initquit_factory;

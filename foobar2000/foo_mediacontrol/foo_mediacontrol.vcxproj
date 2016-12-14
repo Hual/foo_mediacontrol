@@ -113,6 +113,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="playback_listener.cpp" />
+    <ClCompile Include="preferences.cpp" />
     <ClCompile Include="track_data.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +121,8 @@
     <ClInclude Include="media_controls.h" />
     <ClInclude Include="message_listener.h" />
     <ClInclude Include="playback_listener.h" />
+    <ClInclude Include="preferences.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="track_data.h" />
     <ClInclude Include="util.h" />
@@ -141,7 +144,15 @@
       <Project>{e8091321-d79d-4575-86ef-064ea1a4a20d}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="foo_mediacontrol.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="foo_mediacontrol.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
