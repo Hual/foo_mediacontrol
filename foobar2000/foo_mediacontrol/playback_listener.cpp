@@ -12,7 +12,7 @@ void playback_listener::on_playback_new_track(metadb_handle_ptr p_track) {
 		// update the media controls
 		media_controls::get()
 			.begin_update()
-			.set_title(data.get_title())
+			.set_title(data.get_title() != track_data::empty ? data.get_title() : data.get_file_name())
 			.set_artist(data.get_artist())
 			.set_genres(data.get_genres())
 			.set_album(data.get_album())

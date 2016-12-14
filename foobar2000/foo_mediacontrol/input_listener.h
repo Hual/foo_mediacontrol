@@ -11,7 +11,7 @@ private:
 		void callback_run() override;
 
 	private:
-		static_api_ptr_t<playback_control> m_playback_control;
+		const static_api_ptr_t<playback_control> m_playback_control;
 		const Windows::Media::SystemMediaTransportControlsButton m_button;
 
 	};

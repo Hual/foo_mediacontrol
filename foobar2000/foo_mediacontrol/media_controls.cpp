@@ -141,11 +141,11 @@ media_controls& media_controls::set_thumbnail(album_art_data::ptr data) {
 			if (CreateRandomAccessStreamOverStream(m_art_stream, BSOS_DEFAULT, ABI::Windows::Storage::Streams::IID_IRandomAccessStream, reinterpret_cast<void**>(&stream)) == S_OK)
 				m_updater->Thumbnail = Windows::Storage::Streams::RandomAccessStreamReference::CreateFromStream(stream);
 			else
-				popup_message::g_show("Failed to create over stream.", "Error");
+				console::error("Failed to create random access stream over stream.");
 
 		}
 		else
-			popup_message::g_show("Could not create stream.", "Error");
+			console::error("Could not create stream.");
 	}
 
 	return *this;

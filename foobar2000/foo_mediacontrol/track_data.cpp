@@ -10,6 +10,9 @@ track_data::track_data(metadb_handle_ptr metadb_data) {
 	abort_callback_dummy abort;
 	metadb_info_container::ptr container = metadb_data->get_async_info_ref();
 
+	// get file name without extension as title fallback
+	m_name = util::utf8_to_wide(pfc::io::path::getFileNameWithoutExtension(metadb_data->get_path()).c_str());
+
 	if (container != nullptr) {
 		const file_info& info = container->info();
 		m_genres = genre_data_vector();
@@ -20,7 +23,7 @@ track_data::track_data(metadb_handle_ptr metadb_data) {
 				it->second = util::utf8_to_wide(info.meta_get(it->first, 0));
 			}
 		}
-
+		
 		// populate genre vector
 		if (info.meta_exists("genre")) {
 			wchar_t* genres = util::utf8_to_wide(info.meta_get("genre", 0));
@@ -38,6 +41,9 @@ track_data::track_data(metadb_handle_ptr metadb_data) {
 
 			delete[] genres;
 		}
+	}
+	else {
+		throw pfc::exception("Could not fetch track metadata.");
 	}
 
 	// populate album art data buffer (fallback in the order front->back->disc->artist->icon)
@@ -58,8 +64,6 @@ track_data::track_data(metadb_handle_ptr metadb_data) {
 			break;
 		}
 	}
-
-	
 }
 
 track_data::~track_data() {
@@ -68,4 +72,6 @@ track_data::~track_data() {
 			delete[] it->second;
 		}
 	}
+
+	delete[] m_name;
 }

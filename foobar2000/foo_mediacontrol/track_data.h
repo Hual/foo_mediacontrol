@@ -1,5 +1,11 @@
 #pragma once
 
+#define QUERY_TITLE "title"
+#define QUERY_ARTIST "artist"
+#define QUERY_ALBUM_ARTIST "album artist"
+#define QUERY_ALBUM "album"
+#define QUERY_TRACK_NUMBER "track number"
+
 #include <map>
 #include <vector>
 
@@ -20,23 +26,27 @@ public:
 	}
 
 	inline wchar_t* get_title() {
-		return get("title");
+		return get(QUERY_TITLE);
 	}
 
 	inline wchar_t* get_artist() {
-		return get("artist");
+		return get(QUERY_ARTIST);
 	}
 
 	inline wchar_t* get_album_artist() {
-		return get("album artist");
+		return get(QUERY_ALBUM_ARTIST);
 	}
 
 	inline wchar_t* get_album() {
-		return get("album");
+		return get(QUERY_ALBUM);
 	}
 
 	inline wchar_t* get_track_number() {
-		return get("track number");
+		return get(QUERY_TRACK_NUMBER);
+	}
+
+	inline wchar_t* get_file_name() {
+		return m_name;
 	}
 
 	inline genre_data_vector& get_genres() {
@@ -47,18 +57,20 @@ public:
 		return m_album_art;
 	}
 
+	static wchar_t* const empty;
+
 private:
 	track_data_map m_data = {
-		{ "title", empty },
-		{ "artist", empty },
-		{ "album artist", empty },
-		{ "album", empty },
-		{ "track number", empty }
+		{ QUERY_TITLE, empty },
+		{ QUERY_ARTIST, empty },
+		{ QUERY_ALBUM_ARTIST, empty },
+		{ QUERY_ALBUM, empty },
+		{ QUERY_TRACK_NUMBER, empty }
 	};
 	
 	genre_data_vector m_genres;
 	album_art_data::ptr m_album_art = nullptr;
+	wchar_t* m_name;
 
-	static wchar_t* const empty;
 	static wchar_t* const genre_separator;
 };
