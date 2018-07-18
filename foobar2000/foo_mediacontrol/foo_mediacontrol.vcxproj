@@ -14,7 +14,7 @@
     <ProjectGuid>{85FBFD09-0099-4FE9-9DB6-78DB6F60F817}</ProjectGuid>
     <RootNamespace>foo_input_raw</RootNamespace>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>foo_mediacontrol</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -53,7 +53,7 @@
     <ReferencePath>$(WindowsSdkDir)UnionMetadata;$(WindowsSdkDir)\References\CommonConfiguration\Neutral;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(VCINSTALLDIR)\vcpackages;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ReferencePath>$(WindowsSdkDir)UnionMetadata;$(WindowsSdkDir)\References\CommonConfiguration\Neutral;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(VCINSTALLDIR)\vcpackages;$(ReferencePath)</ReferencePath>
+    <ReferencePath>$(WindowsSdkDir)UnionMetadata;$(WindowsSdkDir)\References\CommonConfiguration\Neutral;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -64,14 +64,15 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)..\ATLHelpers\Include</AdditionalIncludeDirectories>
-      <AdditionalUsingDirectories>$(VSInstallDir)\vc\vcpackages;$(WindowsSdkDir)UnionMetadata;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalUsingDirectories>$(WindowsSdkDir)References\Windows;$(WindowsSdkDir)References\CommonConfiguration\Neutral;$(VCInstallDir)vcpackages;$(DevEnvDir)VC\vcpackages;$(WindowsSDK)UnionMetadata;$(WindowsSDK_UnionMetadataPath);$(AdditionalUsingDirectories);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
@@ -86,15 +87,17 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>None</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(SolutionDir)..\ATLHelpers\Include</AdditionalIncludeDirectories>
-      <AdditionalOptions>/ZW:nostdlib /FUplatform.winmd /FUwindows.winmd /Zi /sdl- %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalUsingDirectories>$(VSInstallDir)\vc\vcpackages;$(WindowsSdkDir)UnionMetadata;%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
+      <AdditionalUsingDirectories>$(WindowsSdkDir)References\Windows;$(WindowsSdkDir)References\CommonConfiguration\Neutral;$(VCInstallDir)vcpackages;$(DevEnvDir)VC\vcpackages;$(WindowsSDK)UnionMetadata;$(WindowsSDK_UnionMetadataPath);$(AdditionalUsingDirectories);%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <CompileAsWinRT>true</CompileAsWinRT>
+      <ForcedUsingFiles>
+      </ForcedUsingFiles>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>

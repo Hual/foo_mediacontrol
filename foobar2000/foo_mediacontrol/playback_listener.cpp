@@ -16,7 +16,6 @@ void playback_listener::on_playback_new_track(metadb_handle_ptr p_track) {
 			.set_artist(data.get_artist())
 			.set_genres(data.get_genres())
 			.set_album(data.get_album())
-			.set_album_artist(data.get_album_artist())
 			.set_track_number(data.get_track_number())
 			.set_thumbnail(data.get_album_art())
 			.end_update();
